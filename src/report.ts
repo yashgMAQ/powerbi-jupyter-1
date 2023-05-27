@@ -15,7 +15,7 @@ import { MODULE_NAME, MODULE_VERSION } from './version';
 
 // Import the CSS
 import '../css/report.css';
-import { getActivePageSize, getRequestedPage, powerbi, setTokenExpirationListener, getTokenExpirationTimeout } from './utils';
+import { getActivePageSize, setActivePage,getRequestedPage, powerbi, setTokenExpirationListener, getTokenExpirationTimeout } from './utils';
 
 const EXPORT_DATA_DEFAULT_STATE: ExportVisualDataRequest = {
   pageName: undefined,
@@ -246,10 +246,10 @@ export class ReportView extends DOMWidgetView {
     });
 
     this.report.on('rendered', () => {
-      console.log('Rendered');
+      console.log('Renderedxyz 123');
       // Invoke rendered event handler on kernel side
       this.model.set('_event_data', {
-        event_name: 'rendered',
+        l: 'rendered',
         event_details: null,
       });
 
@@ -308,8 +308,10 @@ export class ReportView extends DOMWidgetView {
     const visualName = exportVisualDataRequest.visualName;
     const dataRows = exportVisualDataRequest.rows;
     const exportDataType = exportVisualDataRequest.exportDataType;
-
+    
     try {
+      console.log("yesfsrsgdthgftdh");
+      await setActivePage(this.report, pageName);
       const selectedPage: Page = await getRequestedPage(this.report, pageName);
       const visuals: VisualDescriptor[] = await selectedPage.getVisuals();
       const selectedVisual: VisualDescriptor = visuals.filter((visual: VisualDescriptor) => {

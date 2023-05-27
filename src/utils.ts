@@ -39,6 +39,26 @@ export async function getActivePageSize(report: Report): Promise<models.ICustomP
   return activePage.defaultSize;
 }
 
+export async function setActivePage(report: Report,pageName: string){
+  console.log("setActive page function")
+  // const pages: Page[] = await report.getPages();
+  await report.setPage(pageName)
+  // pages.forEach(page=>{
+  //   page.setVisualDisplayState()
+  //   if(page.name === pageName){
+  //     page.isActive=true;
+  //   }
+  //   else if(page.isActive){
+  //     page.isActive=false
+  //   }
+    
+  //   console.log(page.name,page.isActive)
+  //   }
+  // )
+
+}
+
+
 export async function getRequestedPage(report: Report, pageName: string): Promise<Page> {
   const pages: Page[] = await report.getPages();
   const requestedPage: Page = pages.filter((page: Page) => {
